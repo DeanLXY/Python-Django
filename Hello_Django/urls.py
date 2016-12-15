@@ -21,16 +21,20 @@ from app_calc.views import add2
 from app_temp.views import index as temp_index
 from app_23code.views import create as code_create
 from app_23code.views import list as code_list
-from app_blog2.views import index as blog_index
-from app_blog2.views import add as blog_add
+# from app_blog2.views import index as blog_index
+# from app_blog2.views import add as blog_add
+from app_tools.views import index as tools_index
+from app_blog2.views import send_Email_msg
 
 urlpatterns = [
-    url(r'^index/',blog_index),
+    url(r'^sendemail',send_Email_msg),
+    url(r'^$', tools_index),
+    # url(r'^index/',blog_index),
     url(r'^create/$',code_create),
     url(r'^codelist/$',code_list),
-    url(r'^add/$', blog_add),
+    # url(r'^add/$', blog_add),
     # url(r'^index/(\w+)/$', temp_index),
     url(r'^add/(\d+)/(\d+)/$',add2),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index),
+
 ]

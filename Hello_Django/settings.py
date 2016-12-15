@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'app_23code',
     'app_blog',
     'app_blog2',
+    'app_tools',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'wangxj0714@163.com'
+EMAIL_HOST_PASSWORD = '774137461'
+DEFAULT_FROM_EMAIL = 'wangxj0714@163.com'
