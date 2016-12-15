@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>列表信息</title>
+</head>
+<body>
+<ul>
+    {% for code_category in code_category_list %}
+        <li>{{ code_category.app_title }}</li>
+    {% empty %}
+        <li>抱歉，列表为空</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
