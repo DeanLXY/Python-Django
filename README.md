@@ -10,5 +10,10 @@
 > 2.  根目录 ` python manage.py runserver 0.0.0.0:8000`
 > 3. 打开浏览器 访问 `http://127.0.0.0/admin`
 
+* 示例一
+
 ![2016-12-15_132050](./statics/2016-12-15_132050.png)
 
+* 示例二
+
+![2016-12-15_234444](C:\Users\wangx\Desktop\Hello_Django\statics\2016-12-15_234444.png)
