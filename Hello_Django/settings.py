@@ -85,8 +85,22 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    ,
+     'db1': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db_blog.sqlite3',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        "HOST": "localhost",
+    },
 }
 
+# DATABASE_ROUTERS = ['Hello_Django.database_router.DatabaseAppsRouter']
+# DATABASE_APPS_MAPPING = {
+    # example:
+    #'app_name':'database_name',
+    # 'app_blog2': 'db1',
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
