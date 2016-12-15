@@ -16,4 +16,4 @@
 
 * 示例二
 
-![2016-12-15_234444](C:\Users\wangx\Desktop\Hello_Django\statics\2016-12-15_234444.png)
+![2016-12-15_234444](statics\2016-12-15_234444.png)
