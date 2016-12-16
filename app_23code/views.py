@@ -16,7 +16,7 @@ def create(request):
     app_desc = request.GET['app_desc']
     category_txt_href = request.GET['category_txt_href']
     app_category = request.GET['app_category']
-    CodeCategory.objects.create(img_convery=img_convery,app_title=app_title,upload_time=upload_time,app_desc=app_desc,category_txt_href=category_txt_href,app_category=app_category)
+    CodeCategory.objects.create(img_convery=img_convery,app_title=app_title,upload_author=upload_time,app_desc=app_desc,category_txt_href=category_txt_href,app_category=app_category)
     return render(request,'spider_create.html',{'app_name':app_title})
 
 def list(request):

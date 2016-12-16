@@ -62,6 +62,7 @@ db_config = {
         'charset':  'utf8'  # 默认即为utf8
          }
 
+
 class ErThreeCode(object):
 
     def __init__(self):
@@ -152,7 +153,8 @@ class ErThreeCode(object):
                     self.app_arr_infos.append(code_list_entity)
                     logger.info(code_list_entity)
                     #self.db_connection_categories(code_list_entity)
-                    self.request_django_webserver_create_newcode(code_list_entity)
+                    # self.request_django_webserver_create_newcode(code_list_entity)
+                    self.request_img_convery_write2_statics(code_list_entity)
             #logger.info(self.app_arr_infos)
         else:
             logger.error(document_url+"@请求出错")
@@ -170,10 +172,27 @@ class ErThreeCode(object):
         pass
 
 
+    def request_img_convery_write2_statics(self,code_list_entity):
+        try:
+            img_src = code_list_entity.img_convery
+            r = requests.get(img_src,stream=True,headers=headers)
+            extra_png = img_src[-5:][img_src[-5:].index('.')+1:]
+            code_list_entity.img_convery = code_list_entity.app_title+'.'+extra_png
+            f = open('../../app_23code/static/images/'+code_list_entity.app_title+'.'+extra_png,'wb')
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk: # filter out keep-alive new chunks
+                    f.write(chunk)
+                    f.flush()
+            self.request_django_webserver_create_newcode(code_list_entity)
+            f.close()
+        except Exception as e:
+            raise e
+
+
     # 将数据插入到 django
     def request_django_webserver_create_newcode(self,code_list_entity):
         try:
-            response = requests.get('http://127.0.0.1:8000/create/?img_convery='+code_list_entity.img_convery+'&app_title='+code_list_entity.app_title+'&upload_time='+code_list_entity.upload_time+'&app_desc='+code_list_entity.app_desc+'&category_txt_href='+code_list_entity.category_txt_href+'&app_category='+code_list_entity.app_category)
+            response = requests.get('http://127.0.0.1:8000/create/?img_convery='+code_list_entity.img_convery+'&app_title='+code_list_entity.app_title+'&upload_time='+code_list_entity.upload_time+'&app_desc='+code_list_entity.app_desc+'&category_txt_href='+code_list_entity.category_txt_href+'&app_category='+code_list_entity.app_category,headers=headers)
             if response.status_code == 200:
                 logger.info(response.text)
         except Exception as e:
