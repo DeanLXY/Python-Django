@@ -1,3 +1,4 @@
+# coding:utf-8
 """
 Django settings for Hello_Django project.
 
@@ -25,7 +26,7 @@ SECRET_KEY = '@7%8=nh2%)x%ss_q(co1l6_3mqj$0mc-2*@^a6s&h_n0onp6sg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.sites',
+    # 'users',
+
     'app',
     'app_calc',
     'app_temp',
@@ -44,7 +48,24 @@ INSTALLED_APPS = [
     'app_blog',
     'app_blog2',
     'app_tools',
+    'DjangoUeditor',
 ]
+
+# register user
+# AUTH_USER_MODEL = 'users.User'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table_name',
+        'TIMEOUT': 600,
+        'OPTIONS': {
+            'MAX_ENTRIES': 2000
+        }
+    }
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,14 +106,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-    ,
-     'db1': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db_blog.sqlite3',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        "HOST": "localhost",
-    },
+    # ,
+    #  'db1': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'db_blog.sqlite3',
+    #     'USER': 'root',
+    #     'PASSWORD': 'root',
+    #     "HOST": "localhost",
+    # },
 }
 
 # DATABASE_ROUTERS = ['Hello_Django.database_router.DatabaseAppsRouter']
@@ -124,6 +145,30 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
+MIDDLEWARE_CLASSES = (
+    'django.middleware.locale.LocaleMiddleware',
+)
+
+LANGUAGE_CODE = 'en'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+LANGUAGES = (
+    ('en', ('English')),
+    ('zh-hans', ('中文简体')),
+    ('zh-hant', ('中文繁體')),
+)
+
+#翻译文件所在目录，需要手工创建
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.i18n",
+)
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'

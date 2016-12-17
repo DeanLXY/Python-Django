@@ -10,6 +10,8 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     empty_value_display = 'None'
     actions = ['make_published','make_ariticle_w']
+
+    # actions_on_top = False
     # actions_on_top = True
     # date_hierarchy = 'pub_date'
 
