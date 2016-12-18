@@ -28,19 +28,25 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+ADMIN_LOGIN = 'wangxujie'
+ADMIN_PASSWORD = 'wangxujie0714'
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.contenttypes',
+    # 'grappelli.dashboard',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
+    # 'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
     # 'users',
-
+    'app_auth',
     'app',
     'app_calc',
     'app_temp',
@@ -49,10 +55,9 @@ INSTALLED_APPS = [
     'app_blog2',
     'app_tools',
     'DjangoUeditor',
+
 ]
 
-# register user
-# AUTH_USER_MODEL = 'users.User'
 
 CACHES = {
     'default': {
@@ -89,6 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                # "django.core.context_processors.i18n",
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -145,9 +151,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.locale.LocaleMiddleware',
-)
+# MIDDLEWARE_CLASSES = (
+#     'django.middleware.locale.LocaleMiddleware',
+# )
+
+# AUTHENTICATION_BACKENDS = (
+#     'app_auth.auth.MyCustomBackend' ,
+# )
 
 LANGUAGE_CODE = 'en'
 TIME_ZONE = 'UTC'
@@ -166,9 +176,9 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.i18n",
-)
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     "django.core.context_processors.i18n",
+# )
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -184,6 +194,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
 
 STATICFILES_DIRS = (
@@ -193,11 +204,19 @@ STATICFILES_DIRS = (
     ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'smtp.163.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'wangxj0714@163.com'
-EMAIL_HOST_PASSWORD = '774137461'
-DEFAULT_FROM_EMAIL = 'wangxj0714@163.com'
+# EMAIL_USE_TLS = False
+# EMAIL_HOST = 'smtp.163.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = 'wangxj0714@163.com'
+# EMAIL_HOST_PASSWORD = '774137461'
+# DEFAULT_FROM_EMAIL = 'wangxj0714@163.com'
+
+
+# grappelli
+GRAPPELLI_ADMIN_TITLE = '管理系统'
+GRAPPELLI_AUTOCOMPLETE_LIMIT = 1
+GRAPPELLI_SWITCH_USER = True
+# GRAPPELLI_SWITCH_USER_ORIGINAL = True
+GRAPPELLI_CLEAN_INPUT_TYPES= True

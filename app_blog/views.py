@@ -3,4 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse('message')
+    return render(request,'index.html')
+
+def user_prompt(request):
+    return render(request,'user_prompt.html')
